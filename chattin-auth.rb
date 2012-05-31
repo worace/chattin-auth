@@ -1,9 +1,3 @@
-# require 'bundler'
-# require 'sinatra/base'
-# require 'active_record'
-# require 'omniauth'
-# require 'omniauth-google-oauth2'
-
 class ChattinAuth < Sinatra::Base
   get '/' do
     <<-HTML
@@ -14,7 +8,9 @@ class ChattinAuth < Sinatra::Base
   end
 
   get '/auth/:provider/callback' do
-    session[:uid] = request.env["omniauth.auth"]["uid"]
+    raise "boom"
+    auth = request.env["omniauth.auth"]
+    raise auth.to_hash.inspect
+    user = User.find_by_uid(auth.uid)
   end
-
 end

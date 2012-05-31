@@ -1,8 +1,17 @@
 source 'https://rubygems.org'
 
 gem 'sinatra'
-gem 'activerecord'
+gem 'activerecord',  '3.2.3'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-twitter'
-gem 'sqlite3'
+
+group :development do
+  gem 'rake'
+  gem 'sqlite3'
+end
+
+group :development, :test do
+  gem 'rspec'
+  gem 'rack-test'
+end
